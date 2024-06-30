@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>readem.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="clase01-30-abril-del-2024">Clase01: 30 Abril del 2024</h1>
+<p><strong>Nombres</strong></p>
+<ul>
+<li>Rommel Rivera</li>
+<li>Sebastian Oña</li>
+<li>Richard Tipantiza</li>
+<li>Carlos Troya</li>
+</ul>
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+<p>Visual Studio Code es un software de Microsoft que edita códigos fuente disponibles para Windows, Linux y macOS. Este programa no necesita tanto espacio para su instalación a diferencia de Visual Studio. Es compatible con JavaScript y Node.js y extensiones a otros lenguajes como Python.
+<strong>Caracteriisticas</strong></p>
+<ul>
+<li><strong>IntelliSense:</strong> esta característica le ofrece al programador el autocompletado y resaltado de sintaxis, lo que lo hace más rápido a la hora de escribir un código. Proporciona sugerencias de códigos y terminaciones inteligentes con relaciones a variables y funciones.</li>
+<li><strong>Depuración:</strong> esta herramienta ayuda a detectar errores en los códigos, para evitar revisar línea por línea, así como también detecta errores mínimos antes de ejecutar la depuración en sí.</li>
+<li><strong>Extensiones:</strong> VS Code es un editor potente por las extensiones que maneja, las cuales permiten personalizar y agregar funciones adicionales de forma aislada y modular. Esto hace que sea más fácil programar en diferentes lenguajes, agregar nuevos temas al editor y conectar con otros servicios.</li>
+</ul>
+<h2 id="comandos-visual-code">Comandos visual code</h2>
+<ul>
+<li>
+<p><strong>Windows</strong>: ==CTRL+SHIFT+P== :  Abre el panel de control que tiene VSC.</p>
+</li>
+<li>
+<p><strong>Windows</strong>: ==CTRL+P== : Abre panel para cambiar de diferente archivo que tengas en tu carpeta.</p>
+</li>
+<li>
+<p><strong>Windows</strong>: ==CTRL+B== : La pestaña que te muestra tus archivos.</p>
+</li>
+<li>
+<p><strong>Windows</strong>: ==CTRL+D== : Te permite cambiar el nombre de varias palabras/variables del mismo nombre.</p>
+</li>
+<li>
+<p><strong>Windows</strong>: ==CTRL+F== : Te ayuda a buscar palbara/variable en el codigo.</p>
+</li>
+<li>
+<p><strong>windows</strong>: ==CTRL+S== : Es la opcion para guardar.</p>
+</li>
+<li>
+<p><strong>Windows</strong>: ==AlT + or -== : Si esta abierto pestañas te permite cambiar a otra.</p>
+</li>
+<li>
+<p><strong>Windows</strong>: ==AlT + up or down== :  Mueve toda la linea de acuerdo a la flecha.</p>
+</li>
+<li>
+<p><strong>windows</strong>: ==SHIFT+ALT+ up or down== : Copia toda la linea a la siguiente.</p>
+</li>
+<li>
+<p><strong>windows</strong>: ==SHIFT+ALT+A== : Pone para comentar una linea.</p>
+</li>
+<li>
+<p><strong>windows</strong>: ==CTRL+K+C== : Pondra toda la linea como comentario.</p>
+</li>
+<li>
+<p><strong>windows</strong>: ==CTRL+T== : Permite mostrar todos los simbolos.</p>
+</li>
+<li>
+<p><strong>windows</strong>: ==CTRL+SPACE== : Te ayuda autocompletar una palabra.</p>
+</li>
+<li>
+<p><strong>windows</strong>: ==CTRL+x== :Borra una linea.</p>
+</li>
+<li>
+<p><strong>windows</strong>: ==ClICK en el archivo + F2== : Cambia el normbre del archivo.</p>
+</li>
+</ul>
+<h2 id="personalizacion-de-nuestro-entorno-de-trabajo">Personalizacion de nuestro entorno de trabajo</h2>
+<p>Visual estudio nos permite configurar nuestra inferzas o entorno de trabja a nuestro gusto mediante una gran variedad de extensiones o opcion que posee el mismo visul studio code para esto veremos algunas extenciones que se pueden untilizar para esta personalizacion.</p>
+<ul>
+<li>
+<p><strong>Extension para colocar icnonos a cada uno de nuestros archivos</strong>
+<img src="Captura.PNG" alt=""></p>
+<ul>
+<li>
+<p>Aqui podemos ver como quedaria una carpeta con archivos e imagenes con iconos diferente para ser identificados de forma facil</p>
+<pre><code>![](Captura8.PNG)
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="uso-del-terminal-y-tambien-del-%22bash%22">Uso del terminal y tambien del &quot;Bash&quot;</h2>
+<p>El terminal o consola es el entorno donde trabjamos directamente con lineas de comando</p>
+<p><img src="Captura9.PNG" alt=""></p>
+<p>Este es el terminal por defecto que nos otorga visula studio code el cual pertecene a windows, es decir aqui podremos solo ejecutar comando que pertenezcan a este sistema operativo el cual lleva por nombre power shell</p>
+<h3 id="git-bash">Git Bash</h3>
+<p>Es una aplicación para entornos de Microsoft Windows que ofrece una capa de emulación para una experiencia de líneas de comandos de Git.</p>
+<ul>
+<li>
+<p><strong>¿Qué es Blash?</strong>
+Bash es el acrónimo en inglés de Bourne Again Shell.</p>
+</li>
+<li>
+<p><strong>¿Qué es Shell?</strong>
+Es una aplicación de terminal que se utiliza como interfaz con un sistema operativo mediante comandos escritos.</p>
+</li>
+</ul>
+<h2 id="comandos-de-la-terminal">Comandos de la terminal</h2>
+<ul>
+<li><ins>pwd</ins> : Me permite saber en que directorio estoy trabajando.</li>
+<li><ins>touch</ins> : Para crear un archivo.
+<em>Ej: touch readme.md</em></li>
+<li><ins>code</ins> : Para crear archivos.
+<em>Ej: code readme.md</em></li>
+<li><ins>touch <strong>&quot;&quot;</strong> &gt;&gt; texto2.txt</ins> : Dentro de las comillas escribo lo que quiero que se escriba al crear el archivo --&gt;
+<em>EJ: touch &quot;hola mundo&quot; &gt;&gt; texto2.txt</em></li>
+</ul>
+<h2 id="git-y-github">Git y Github</h2>
+<div style="overflow: hidden; display: flex; align-items: center;">
+    <div style="float: left; width: 50%;">
+        <img src="img2.jpg" alt="Logo git y github" style="width: 100%;" />
+    </div>
+    <div style="float: right; width: 300%;">
+     Git es un sistema de control de versiones rastrea los cambios que se han hecho en un conjunto de archivos es decir, un proyecto.
+     <div style="float: right; width: 100%;">
+     Github es un servicio que almacena repositorios en sus servidores y control de versiones usando git.
+    </div>
+    </div>
+</div>
+<h3 id="recomendaciones-de-otros-comandos-que-tiene-markdown">Recomendaciones de otros comandos que tiene markdown</h3>
+<ul>
+<li>Si queremos enumerar hacemos lo siguiente:
+<ol>
+<li>Linea 1</li>
+<li>Linea 2
+<ol>
+<li>Linea 1</li>
+<li>linea 2</li>
+</ol>
+</li>
+<li>Linea 3</li>
+</ol>
+</li>
+<li>Si queremos poner otro signo para ideas hacemos lo siguiente:
+<ul>
+<li>Linea 1</li>
+<li>Linea 2
+<ul>
+<li>Linea 1</li>
+<li>linea 2</li>
+</ul>
+</li>
+<li>Linea 3</li>
+</ul>
+</li>
+</ul>
+<h1 id="clase03-31-abril-del-2024">Clase03: 31 Abril del 2024</h1>
+<h3 id="markdown">Markdown</h3>
+<p align="center">
+  <img src="img1.png" alt="Mi imagen" width="200px" />
+</p>
+Es un formato que nos permite generar archivos xtml y html utilizando una sintáxis bastante clara y sencilla y sobre todo fácil de escribir.
+<ul>
+<li>
+<p>markdown (para convertir a pdf mi markdown):</p>
+<ol>
+<li>Windows: CTRL+SHIFT+P</li>
+<li>Despues busco la opcion de &quot;markdown export pdf&quot;</li>
+<li>Se crea automaticamente un archivo pdf de tu markdown</li>
+</ol>
+</li>
+<li>
+<p>Para poner cursiva se debe encerrar entre asteriscos:</p>
+<p>*palabra o texto* = <em>palabra o texto</em>  <!-- entre los asteriscos la palbra o el texto estara en cursiva --></p>
+</li>
+<li>
+<p>Para poner en negrillas se debe encerrar entre doble asteriscos:</p>
+<p>**palabra o texto** = <strong>palabra o texto</strong> <!-- entre los dos signos nos permite poner el todo un texto o una palabra en negrita --></p>
+</li>
+<li>
+<p>Para poner cursiva y negrillas se debe encerrar entre triple asteriscos:</p>
+<p>***palabra o texto*** = <em><strong>palabra o texto</strong></em> <!-- cursiva y en negrita --></p>
+</li>
+<li>
+<p>Windows: ALT+9+6 (`) or windows: ALT+1+2+6 (~) <!-- crear este signo para lo siguiente --></p>
+<ul>
+<li>
+<p>Nos permite poner una parte del codigo para analizar despues de (```) tenemos que poner el lenguaje de progrmacion.</p>
+<p>Ejemplos:</p>
+<pre><code>    1. 
+        
+        ``` java
+        public int sumar(){
+        int i=10;
+        }
+        ```
+    2. 
+
+         ``` java
+        public clas Hola{
+        /* clase principal */
+            public class void main{
+                System.out.println();   
+            }
+        }
+        ```
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Para hacer cuadros:</p>
+<ul>
+<li>
+<p>Se organiza el texto en columnas y filas. Las filas se obtienen con salto de linea de texto y las columnas se obtienen encerrando el texto entre barras: |Texto|</p>
+</li>
+<li>
+<p>Al finalizar la primera fila en donde tenemos los encabezados, se digita una siguiente fila de lineas entrecortadas para dar formato de titulo dentro de la tabla: |----|</p>
+<pre><code>|Columna 1 | columna 2 |
+|----------|-----------|
+|     A    |      B    |
+|     C    |      D    |
+</code></pre>
+<p>Para lo cual obtendremos:</p>
+<table>
+<thead>
+<tr>
+<th>Columna 1</th>
+<th>columna 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>B</td>
+</tr>
+<tr>
+<td>C</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>Insertar link o enlace:</p>
+<ul>
+<li>
+<p>Si queremos solo insertar el hipervinculo al URL debemos encerrar entre &lt;&gt; la direccion.</p>
+<pre><code>&lt;https://www.google.com&gt;
+</code></pre>
+<p>De lo que obtenemos: <a href="https://www.google.com">https://www.google.com</a></p>
+</li>
+<li>
+<p>Si queremos aplicar un hipervinculo a un texto con un direccion, el texto se encierra entre corchetes, el enlace entre parentesis y si deseamos aplicar un mensaje sobre el texto cuando se pose el cursor, se encierra dicho mensaje entre comillas.</p>
+<pre><code>[Buscador](https://www.google.com &quot;Google&quot;)
+</code></pre>
+<p>De lo que obtenemos: <a href="https://www.google.com" title="Google">Buscador</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Comandos de git</p>
+<ol>
+<li><ins>git init</ins> : Crea un carpeta oculta en tu carpeta de proyecto  y va aparecer tus archivo con &quot;U&quot;.</li>
+<li><ins>git status</ins> : Te muestra que archivos has guardado --&gt; (rojo: no esta guardado and verde: esta guardado).</li>
+<li><ins>git commit</ins> : Para guradar el proyecto.</li>
+<li><ins>git checkout -b &quot;Nombre de rama&quot;</ins> : Crea y cambia de rama.</li>
+<li><ins>git branch</ins> : Crea una rama.</li>
+<li><ins>git push</ins> : Subo todo al github.</li>
+<li><ins>git pull</ins> : Nos ayuda a traer los cambios hechos en la nube.</li>
+<li><ins>git clone url</ins> : Baja el archivo de algun proyecto.</li>
+<li><ins>git ignore</ins> : Dentro del archivo puedes poner archivos q va ignorar o no va a guardar.</li>
+<li><ins>git config --global user.name &quot;nombre&quot;</ins> : Colocar nombre de ususario.</li>
+<li><ins>git config user.name</ins> : Verificar si esta su nombre de ususario. (<strong>Es lo mismo para el email solo cambia user.email</strong>)</li>
+<li><ins>git config --global init.default branch &quot;main&quot;</ins> : Cambiar de master a main.</li>
+<li><ins>git commit -m Descripcion</ins> :Agregar cambios al repositorio local y una descripcion del cambio.</li>
+<li><ins>git log</ins> :Muestra historial de commits. Si agregas &quot;--oneline&quot;, aparece mas compacto.</li>
+<li><ins>git add .</ins> : Agregar cambios al commit.</li>
+<li><ins>git config --global core.editor</ins> : Asociar al vscode.</li>
+<li><ins>git branch -m nombre actual nombre nuevo</ins> : Cambiar nombre de rama sin estar en la rama a la que se va a cambiar.</li>
+<li><ins>git branch -d</ins> : Eliminar rama (locales no publicadas).</li>
+<li><ins>git merge nombre-de-rama</ins> : Fusionar rama con main.</li>
+<li><ins>git remote</ins> : Ver nombre del repositorio remoto.</li>
+<li><ins>git fetch origin</ins> : Crear una rama local con los cambios de la rama remota.</li>
+<li><ins>git push origin -d</ins> : Eliminar rama remota.</li>
+</ol>
+</li>
+</ul>
+<h1 id="resumenes-de-las-siguientes-clases">Resumenes de las siguientes clases</h1>
+<h3 id="poo">P.O.O</h3>
+<p><img src="image.png" alt="alt text"></p>
+<p><img src="image-1.png" alt="alt text"></p>
+<h2 id="ambitos">Ambitos</h2>
+<ul>
+<li>public: Indica que los miembros (variables o métodos) son accesibles desde cualquier clase o paquete.
+Son visibles para todos.</li>
+<li>protected: Los miembros con esta visibilidad son accesibles dentro del mismo paquete o por subclases,
+incluso si están en paquetes diferentes.</li>
+<li>private: Limita el acceso a los miembros solo dentro de la misma clase. No son visibles ni accesibles
+desde ninguna otra clase.</li>
+</ul>
+<h2 id="uml">UML</h2>
+<p>Los diagramas UML (Lenguaje Unificado de Modelado) son una herramienta fundamental en la programación orientada a objetos, especialmente en Java. Permiten visualizar la estructura y el diseño de un sistema de software antes de codificarlo, lo que ayuda a planificar y comunicar ideas de manera clara entre los desarrolladores. UML apoya la abstracción y el diseño de clases, relaciones, patrones de diseño y otros aspectos de POO, facilitando así la comprensión y el desarrollo del software</p>
+<h2 id="3-codigo">3) Codigo</h2>
+<pre><code>``` java
+public class Mujer(){
+    private float Mujer edad;
+    public boolean tieneOjos;
+    public String tipoCablello;
+
+    protect String bailar( String cancion, int tiempoMin, String ritmo){
+        return &quot;Baile fenomenal&quot;;
+    }
+}
+
+```
+</code></pre>
+<h3 id="resumen-porque-es-importante-poo">Resumen porque es importante P.O.O</h3>
+<ul>
+<li>
+<p>Es importante porque proporciona una estructura clara para los programas que facilita el desarrollo y mantenimiento del código, permite la reutilización de código y hace que el software sea más flexible y fácil de modificar. Además, la POO puede ayudar a manejar sistemas complejos al dividirlos en partes más pequeñas y manejables, conocidas como objetos</p>
+<h1 id="tipos-de-datos-importantes-para-progrmamar">Tipos de datos Importantes para progrmamar</h1>
+</li>
+</ul>
+<h2 id="strings">Strings</h2>
+<ul>
+<li>charAt(index): Obtener un caracter</li>
+<li>length(): Longitud de la cadena</li>
+<li>substring(inicio, fin): Extraer parte de la cadena</li>
+<li>indexOf(cadena): Buscar una cadena en otra</li>
+<li>equalsIgnoreCase(cadena): Comparar cadenas sin distinciones entre mayusculas y minusculas</li>
+</ul>
+<h2 id="scanner">Scanner</h2>
+<ul>
+<li>Scanner stdIn = new Scanner(System.in)</li>
+<li>nextInt() : Leer enteros</li>
+<li>nextDouble() : Leer double</li>
+<li>nextLine() : Salto de linea</li>
+</ul>
+<h2 id="declaracion-de-arrays">Declaracion de Arrays</h2>
+<ul>
+<li>int [] arr ; // Sin asignar memoria</li>
+<li>arr=new int[5]; // Asignando memoria al array</li>
+<li>arr[i] : Acceder a los elementos del array</li>
+<li>Operadores Aritmeticos</li>
+<li>+, -, *, / (Solo numeros)</li>
+<li>% (Modulo)</li>
+<li>++ -- (Operador de incremento / decremento)</li>
+<li>Metodos para trabajar con arrays</li>
+<li>Arrays.toString(array); Imprime el contenido del array como String</li>
+<li>Arrays.sort(array); Ordena el array</li>
+<li>Arrays.binarySearch(array, elementoABuscar); Devuelve la posicion donde se encuentra el elemento o -1 si no
+lo encuentra</li>
+</ul>
+<h2 id="listas">Listas</h2>
+<ul>
+<li>List list; Es una lista genérica que puede contener cualquier tipo de dato</li>
+<li>Metodos comunes a todas las listas</li>
+<li>add(Object o): Agrega un elemento a la lista</li>
+<li>remove(Object o): Elimina un elemento de la lista</li>
+<li>contains(Object o): Devuelve true si contiene el objeto y false en caso contrario</li>
+<li>size(): Devuelve la cantidad de elementos en la lista</li>
+<li>isEmpty(): Devuelve true si esta vacia y false en caso contrario</li>
+<li>get(int index): Devuelve el elemento en la posicion indicada por &quot;index&quot;</li>
+<li>set(int index, Object o): Coloca el elemento &quot;o&quot; en la posición &quot;index&quot;</li>
+<li>indexOf(Object o): Devuelve la primera posición donde se encuentra el elemento &quot;o&quot;, devuelve -1 si no
+esta presente.</li>
+<li>lastIndexOf(Object o): Igual que anterior pero busca desde el final hacia atrás.</li>
+</ul>
+<p><img src="image-2.png" alt="alt text"></p>
+<h3 id="constructores">Constructores</h3>
+<p>Los constructores en Java son métodos especiales que se utilizan para inicializar objetos. Cuando se crea un nuevo objeto, el constructor establece los valores iniciales de los atributos del objeto y puede realizar cualquier configuración o inicialización necesaria.</p>
+<p>Las ventajas de tener constructores en Java incluyen:</p>
+<ol>
+<li>
+<p>Inicialización Controlada: Los constructores proporcionan un lugar centralizado para inicializar los atributos de un objeto, asegurando que el objeto esté en un estado válido desde el momento de su creación.</p>
+</li>
+<li>
+<p>Sobrecarga de Constructores: Java permite la sobrecarga de constructores, lo que significa que puedes tener múltiples constructores con diferentes listas de parámetros, ofreciendo flexibilidad en la inicialización de objetos.</p>
+</li>
+<li>
+<p>Legibilidad del Código: Los constructores hacen que el código sea más legible al proporcionar una clara indicación de cómo se deben crear e inicializar los objetos.</p>
+</li>
+</ol>
+<ul>
+<li>Ejemplo de codigo:</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Coche</span> </span>{
+        <span class="hljs-keyword">private</span> String marca;
+        <span class="hljs-keyword">private</span> String modelo;
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> año;
+
+        <span class="hljs-comment">// Constructor</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Coche</span><span class="hljs-params">(String marca, String modelo, <span class="hljs-keyword">int</span> año)</span> </span>{
+            <span class="hljs-keyword">this</span>.marca = marca;
+            <span class="hljs-keyword">this</span>.modelo = modelo;
+            <span class="hljs-keyword">this</span>.año = año;
+        }
+</div></code></pre>
+<ul>
+<li>como podemos ver al crear el contrusctor debemos poner public
+seguido del nombre de la clase y toma tres parámetros (marca, modelo y año) y los asigna a las variables de instancia del objeto</li>
+</ul>
+<h3 id="diagrama-de-caso-de-uso">Diagrama de caso de uso</h3>
+<p><img src="image-3.png" alt="alt text"></p>
+<h3 id="componentes">Componentes</h3>
+<p>actor .- actua con el sistema,estimula al sistema con algun evento o recibe informacion de sistema. Es un actor externo al sitema</p>
+<h3 id="relaciones">relaciones</h3>
+<ul>
+<li>extends.- se utiliza para representar una relación opcional o condicional entre dos casos de uso, donde un caso de uso extiende la funcionalidad de otro sin ser obligatorio</li>
+<li>include.- se usa para indicar que un caso de uso contiene la funcionalidad de otro caso de uso, lo que significa que siempre se ejecutará como parte del caso de uso que lo incluye. Ambas relaciones ayudan a simplificar los diagramas y a reutilizar comportamientos comunes entre diferentes casos de uso</li>
+</ul>
+<h3 id="herencia">Herencia</h3>
+<p>La herencia en Java es un principio de la programación orientada a objetos que permite que una clase (llamada subclase o clase derivada) herede atributos y métodos de otra clase (llamada superclase o clase base)
+<img src="image-4.png" alt="alt text"></p>
+<h3 id="importancia">Importancia</h3>
+<ol>
+<li>Reutilización de Código: Permite a las subclases utilizar métodos y variables de la superclase, evitando la duplicación de código</li>
+<li>Organización Lógica: Facilita la creación de una jerarquía de clases que refleja relaciones del mundo real, lo que hace que el código sea más intuitivo y fácil de entender.</li>
+<li>Polimorfismo: La herencia permite que objetos de diferentes subclases sean tratados como objetos de la superclase, lo que es útil para implementar operaciones generalizadas.</li>
+</ol>
+<h3 id="extends-en-herencia">Extends en Herencia</h3>
+<p>la palabra clave extends se utiliza en la declaración de una clase para indicar que esa clase va a heredar de otra clase. La herencia permite que la nueva clase, conocida como subclase, adquiera los atributos y métodos de la clase existente, llamada superclase. Esto facilita la reutilización de código y la creación de jerarquías de clases.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Superclase</span> </span>{
+   <span class="hljs-comment">// Atributos y métodos de la superclase</span>
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Subclase</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Superclase</span> </span>{
+   <span class="hljs-comment">// La Subclase hereda atributos y métodos de la Superclase</span>
+}
+</div></code></pre>
+
+</body>
+</html>
