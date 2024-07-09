@@ -456,25 +456,108 @@ Como se veria en codigo:
 </p>
 
  - Bidireccional con multiplicidad
-
- Ejemplos:
-        1.  <p align="center">
-            <img src="image-15.png" width="200px" /> <img src="image-13.png" width="200px" />
-            </p>
-            como se veria en codigo:
+ 
+    - Ejemplos:
+        1. UML + Asociación (multiplicidad / cardinalidad : 0,1,+, 0..*)
             <p align="center">
-            <img src="image-16.png" width="200px" /> <img src="image-17.png" width="200px" />
+            <img src="image-15.png" width="200px" />  
             </p>
-        2. <p align="center">
+            Como se veria en codigo:
+            <p align="center">
+            <img src="image-16.png" width="300px" /> <img src="image-17.png" width="200px" />
+            </p>
+        2. UML +Asociación (multiplicidad / cardinalidad : 0,1,+, 0..*)
+            <p align="center">
             <img src="image-18.png" width="200px" /> 
             </p>
-            como se veria en codigo:
+            Como se veria en codigo:
             <p align="center">
-            <img src="image-19.png" width="200px" /> <img src="image-20.png" width="200px" />
+            <img src="image-19.png" width="300px" /> <img src="image-20.png" width="200px" />
             </p>
-        3. <p align="center">
-            <img src="image-21.png" width="200px" /> 
+        3. UML + Asociación (multiplicidad / cardinalidad : 0,1,+, 0..*)
+            <p align="center">
+            <img src="image-21.png" width="300px" /> 
             </p>
-            como se veria en codigo:
-            
+            Como se veria en codigo:
+            <p align="center">
+            <img src="image-25.png" width="300px" /> <img src="image-26.png" width="300px" />
+            </p>
+ - Relaciones
+    
+    1. UML + Asociación (multiplicidad / cardinalidad : 0,1,+, 0..*, 1..*)
+        
+        <p align="center">
+        <img src="image-27.png" width="300px" /> 
+        </p>
+        Como se veria en codigo:
+        <p align="center">
+        <img src="image-29.png" width="300px" /> <img src="image-28.png" width="200px" />
+        </p>
+
+## Correcion del taller
+
+En la siguiente imagen podemos apreciar como debio verse el diagrama de clase, del taller realizado la anterior clase
+y aumentado lo que vimos en la clase del dia de hoy:
+
+<p align="center">
+<img src="image-22.png" width="500px" /> 
+</p>
+
+Las siguientes imagenes vamos a ver como se veria en el visualcode y en codigo:
+        
+- Visual Code:
+
+<p align="center">
+<img src="image-23.png" width="300px" /> 
+</p>
+
+- Codigo 
+
+    Una de las cosas importantes mientras realizabamos el diagrama de Clase, es entender en cual resultar conveniente
+    poner una variable en esa clase, ya que si muchas hay diferentes clases puedan heredar esa variable y asi ahorrar lineas
+    de codigos
+
+<p align="center">
+<img src="image-24.png" width="300px" /> 
+</p>
+
+    Entonces al momento que las demas clases como mamifero,ave,etc. Heredan esa variable y asi no tienes que crearla en cada
+    una de ellas y si leon hereda de mamifero entences leon tambien tendra la propiedad.
+
+- Codigo de las clases que mandamos a llamar en la App principal
+
+<p align="center">
+        <img src="image-30.png" width="300px" /> <img src="image-31.png" width="200px" />
+        </p>
+- En estas clases aparece algo interesante que es el toString()
+
+El método toString() en Java es una función que devuelve una representación en cadena de texto de un objeto. Sirve para obtener información legible sobre el objeto y facilita su impresión o visualización en pantalla1. Aquí tienes algunos detalles importantes:
+
+¿Qué es el método toString() en Java?
+
+1. El método toString() se utiliza para convertir cualquier objeto Java en una cadena de texto.
+2. Todos los objetos heredan este método de la clase Object.
+3. Siempre que intentes imprimir o transformar a cadena un objeto, estarás utilizando implícitamente el método toString().
+
+## Clase 2:      
+
+### Repaso para la prueba
+
+## Clase 3: 
+
+### PRUEBA
+
+## Clase 4:
+Clase de 30 min
+
+## Clase 5:
+CLASE DE 1 HORA
+
+## Clase 6:
+Clase de 1 hora
+
+## Clase 7:
+Taller Grupal(Aplicando lo aprendido lo visto en las tres ultimas Clases)
+
+## Clase 8:
 
