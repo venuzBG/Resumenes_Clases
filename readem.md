@@ -565,6 +565,10 @@ Taller Grupal(Aplicando lo aprendido lo visto en las tres ultimas Clases)
 
 #### Base de Datos
 
+<p align="center">
+<img src="image-32.png" width="300px" />
+</p>
+
 - Una caracteristica es que base de datos se guarda en el disco duro
 (datos estatico)/persistir -> tablas -> reglas 
 
