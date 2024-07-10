@@ -561,3 +561,46 @@ Taller Grupal(Aplicando lo aprendido lo visto en las tres ultimas Clases)
 
 ## Clase 8:
 
+### Correcion del diagrama de Clase
+
+#### Base de Datos
+
+- Una caracteristica es que base de datos se guarda en el disco duro
+(datos estatico)/persistir -> tablas -> reglas 
+
+- P.O.O se guarda en la RAM
+(datos dinamicos) -> Clases(objetos)
+
+- Atomico
+Significa mientras sea unico 
+
+pongamos un ejemplo:
+1. Persona(cedula(1),nombre1(1),nombre2(1),Apellido(1), TipoSangre(1), .....)
+
+esto que quiere decir que cada dato la persona solo tiene un nombre1, un nombre 2 y asi sucesivamente
+entonces si pasa que uno de esos tienes mayor a uno entonces te podria dar error
+
+
+- Reglas:
+    1. 1....1
+    2. 1....*
+    3. n....n
+
+- Resolucion 
+1. 1.......1
+(P.C)<---->(P.C)
+
+|idP | Cedula | Nombre | Apellido|  |idP|TipSangre|S|
+|----|--------|--------|---------|  |---|---------|-|
+|  1 |  17547 | Pepe   | Andrade |  |1  |   A+    | |
+|  2 |  18734 | Ana    | Soto    |  |2  |   B-    | |
+|  3 |  17372 | Maria  | Perez   |  |3  |   A     | |
+
+- Un consejo importante es elegir el (P.C) en este caso seria recomendable usar la columna idP 
+porque no es una columna importante ya que al elgir la columna Cedula pouede pasar que ingresas 
+mal un numero y no despues va a ser muy dificil modificar ese numero y puede empezar a darte problemas
+despues
+
+
+
+
