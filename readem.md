@@ -592,7 +592,7 @@ entonces si pasa que uno de esos tienes mayor a uno entonces te podria dar error
 
 - Resolucion 
 1. 1.......1
-(P.C)<---->(P.C)
+(P.K)<---->(P.K)
 
 |idP | Cedula | Nombre | Apellido|  |idP|TipSangre|S|
 |----|--------|--------|---------|  |---|---------|-|
@@ -600,11 +600,378 @@ entonces si pasa que uno de esos tienes mayor a uno entonces te podria dar error
 |  2 |  18734 | Ana    | Soto    |  |2  |   B-    | |
 |  3 |  17372 | Maria  | Perez   |  |3  |   A     | |
 
-- Un consejo importante es elegir el (P.C) en este caso seria recomendable usar la columna idP 
-porque no es una columna importante ya que al elgir la columna Cedula pouede pasar que ingresas 
-mal un numero y no despues va a ser muy dificil modificar ese numero y puede empezar a darte problemas
-despues
+- Un consejo importante es elegir el (P.k) en este caso seria recomendable usar la columna idP 
+porque no es una columna importante ya que al elgir la columna Cedula puede pasar que ingresas 
+mal un numero y no despues va a ser muy dificil modificar ese numero y puede empezar a darte problemas en un futuro.
+
+## Clase nro 9
+
+Copiar los diagrmas de mi cuaderno a la compu
+
+## Clase nro 10
+
+Aplicamos lo visto en las anteriores dos clase de Base de Datos:
+
+Primero es instalas la siguiente extencion:
+
+<p align="center">
+<img src="image-33.png" width="300px" />
+</p>
+
+Entonces para este ejercicio vamos a crear un nuevo proyecto llamado EXABOT, despues creamos la 
+carpeta desing, Script y Datebase
+
+    Script: Esta carpeta es donde vamos a crear con codigo nuestras tablas de base de datos por decirlo 
+            de una manera.
+
+    DateBase: Se va a conectar con el archivo de Scrpit para que se vea visualmente nuestra base de datos
+    
+En la siguiente imagen podemos ver como se debes crear los archivos
+<p align="center">
+<img src="image-34.png" width="300px" />
+</p>
+
+En esta clase el inge nos pase lo que ya tenia hecho de los Script:
+
+<p align="center">
+<img src="image-35.png" width="300px" />
+</p>
+
+Punto importante a tener en cuenta es:
+
+- Esta linea de codigo conecta al archivo ExaBot.sqlite para poder ver visualmente nuestras tablas que vamos creando
+  en nuestra base de datos:
+    <!-- -- database: ../DataBase/ExaBot.sqlite -->
+
+- Asi se iria viendo una vez mandemos a correr:
+
+<p align="center">
+<img src="image-36.png" width="300px" />
+</p>
+
+- La siguiente linea de codigo ayuda a borrar una tabla siempre y cuendo exista, lo que ocurre es que al crear una tabla 
+  y puede pasar que te falto agregar algo un dato mas y mandas a correr te sale error, entonces la solucion es borrar la tabla y 
+  volver a crearla y eso lo haces con este comando:
+  
+    <!-- DROP TABLE IF EXISTS ExaBot; -->
+
+ - Vamos a crear otro archivo en la carpeta Script para ingresar datos en la tabla
+
+<p align="center">
+<img src="image-37.png" width="300px" />
+</p>
+
+Partes importantes de codigos que nos ayudara mientras vamos llenando datos en nuetsra tablas:
+
+1. INSERT INTO NOMBRETABLA: Nos va ayudar a ingresar datos en nuestras tablas creadas.
+    Ejemplo:
+    <p align="center">
+    <img src="image-38.png" width="300px" />
+    </p>
+
+2. SELECT * FROM PersonaTipo; -> En lo que nos va a ayudar este codigo es buscar la tabla que queramos y haci facilitarnos ver
+                                 que tipo de informacion hay que llenar en una tabla.
+
+    Ejemplo:
+    <p align="center">
+    <img src="image-39.png" width="300px" />
+    </p>
+
+3. SELECT count (*) FROM PersonaTipo; -> Este en cuestion nos va a ayudar para saber cuantos datos tenemos en una tabla.
+    Ejemplo:
+    <p align="center">
+    <img src="image-40.png" width="300px" />
+    </p>
+
+4. SELECT * FROM PersonaTipo WHERE IdPersonaTipo=2; -> Este nos ayuda a encontrar datos en la tabla que hemos creado y el 
+                                                       =2 puedes cambiarlo con <3 y te mostrara todo los datos menores que ese numero.
+    Ejemplo:
+    - <p align="center">
+      <img src="image-41.png" width="300px" />
+      </p>
+
+    - <p align="center">
+      <img src="image-42.png" width="300px" />
+      </p>
+5. SELECT Nombre FROM PersonaTipo WHERE Nombre like:
+
+    - "s%" -> si pones despues de like significa que buscara todas las palabras que comiencen con "s".
+    Ejemplo:
+        <p align="center">
+      <img src="image-43.png" width="300px" />
+      </p>
+    - "%s" -> si pones despues de like significa que buscara todas las palabras que terminen con "s".
+    Ejemplo:
+        <p align="center">
+      <img src="image-44.png" width="300px" />
+      </p>
+    - "%s%" -> si pones despues de like significa que buscara todas las palabras que tengan entre sus palabras la letra "s".
+    Ejemplo:
+        <p align="center">
+      <img src="image-45.png" width="300px" />
+      </p>
+
+6. DELETE FROM Persona; -> Nos ayuda a borrar datos de una tabla, pero en la siguiente imagen nos muestra q al borrar
+                           datos quedan espacios vacios y esto despues puede crear errores pero ayuda a ver que datos borraron
+                           por eso la importancio de la fechaModificacion y que usuario hizo ese cambio.
+    Ejemplo:
+    <p align="center">
+      <img src="image-46.png" width="300px" />
+      </p>
+
+7. UPDATE Persona SET Nombre = 'Sebastian Andrade ' WHERE Cedula = '1235';
+    - Nos ayuda a modificar un solo dato que ya registre, en la parte de SET eligues que columna quieres cambiar el dato
+      y el where lo usas para que sepa que fila es y tenga ese como referencia sino se cambiara toda la columna
+
+    Ejemplo:
+<p align="center">
+      <img src="image-47.png" width="300px" />
+      </p>
+
+8.  SELECT PersonaTipo.Nombre ,Persona.Nombre
+    FROM PersonaTipo
+    JOIN Persona on PersonaTipo.IdPersonaTipo = Persona.IdPersona; 
+
+    -> En lo que nos ayuda es que se muestren dos columnas de dos tablas distintas
+      EJEMPLO:
+      <p align="center">
+      <img src="image-48.png" width="300px" />
+      </p>
+
+9. SELECT pt.Nombre 'Cargo' ,p.Nombre 'Nombres'
+   FROM PersonaTipo pt
+   JOIN Persona p on pt.IdPersonaTipo = p.IdPersona;
+   
+    -> Este es la forma optimizada del anterior codigo y como pueden ver entre comillas podemos poner que nombre quieres q tenga la columna
+       y tambien que puedes simplificar su nombre poniendo alado su simplificacion
+      EJEMPLO:
+      <p align="center">
+      <img src="image-49.png" width="300px" />
+      </p>
+## Clase nro 11
+
+Diagrma MER:
+
+<p align="center">
+      <img src="image-68.png" width="300px" />
+      </p>
+
+### DataHelper
+1.  Helper Objects en Java: En Java, los objetos auxiliares (helper objects) son clases que se 
+    utilizan para realizar operaciones comunes que son compartidas por varias clases. Estos objetos 
+    ayudan a mantener el código limpio y modular. Algunos ejemplos de uso de objetos auxiliares son:
+    - Clases de utilidad (Utility Classes): Son clases con métodos estáticos que no tienen dependencias. 
+      Por ejemplo, una clase llamada IOUtils podría contener métodos estáticos para cerrar flujos de 
+      entrada/salida sin lanzar excepciones.
+    - Clases de ayuda (Helper Classes): Estas clases tienen dependencias y, por lo tanto, pueden tener 
+      métodos no estáticos. Por ejemplo, una clase llamada PriceHelper podría calcular precios para 
+      diferentes productos o pedidos.
+
+2.  DataHelper en el contexto de bases de datos: En el contexto de acceso a datos y bases de datos, el 
+    término DataHelper puede referirse a un patrón de diseño que encapsula el manejo de la base de datos. 
+    Estos objetos ayudan a acceder a los datos de manera más organizada y modular. Por ejemplo, un DataHelper 
+    podría manejar la conexión a una base de datos y ejecutar consultas o transacciones.
+
+### DAO 
+
+1. El DAO es una clase o interfaz que encapsula la lógica de acceso a datos. Su objetivo principal es proporcionar 
+una interfaz consistente y reutilizable para interactuar con la base de datos.
+
+2. Un DAO generalmente ofrece operaciones CRUD para una entidad específica 
+(por ejemplo, una tabla en la base de datos).
+
+3. La implementación concreta del DAO se comunica con el DataHelper (como una conexión a la base de datos) 
+para ejecutar consultas y transacciones.
+
+### CRUD
+
+CRUD es un acrónimo que se utiliza en programación y sistemas de bases de datos para describir las cuatro operaciones 
+básicas de almacenamiento persistente:
+
+1.  Crear (Create): Se refiere a la acción de agregar nuevos registros o entradas a una base de datos. 
+    Por ejemplo, crear un nuevo usuario en una aplicación.
+2.  Leer o Recuperar (Read o Retrieve): Implica obtener información existente de la base de datos. Por ejemplo, 
+    leer los detalles de un producto o mostrar una lista de usuarios.
+3.  Actualizar (Update): Significa modificar o cambiar los datos existentes en la base de datos. Por ejemplo, 
+    actualizar la dirección de un cliente o cambiar el precio de un artículo.
+4.  Borrar o Eliminar (Delete o Destroy): Se refiere a la acción de eliminar registros de la base de datos. 
+    Por ejemplo, eliminar una publicación de un blog o dar de baja a un cliente.
+
+### JDBC
+
+JDBC (Java Database Connectivity) es una API (Interfaz de Programación de Aplicaciones) para el lenguaje de programación Java. 
+Su objetivo es permitir que las aplicaciones Java se conecten a bases de datos y ejecuten consultas de manera independiente 
+del sistema operativo o la base de datos específica. Aquí tienes algunos puntos clave sobre JDBC:
+
+- Definición: JDBC proporciona métodos para consultar y actualizar datos en una base de datos, especialmente 
+  orientada a bases de datos relacionales.
+- Parte de Java SE: Forma parte de la plataforma Java Standard Edition (Java SE) de Oracle Corporation.
+- Versiones: Ha evolucionado a lo largo del tiempo, con versiones como JDBC 3.0, JDBC 4.0, JDBC 4.1, JDBC 4.2 y la más reciente, JDBC 4.3.
+- Funcionalidad: Permite crear conexiones a bases de datos, ejecutar declaraciones SQL (como SELECT, INSERT, UPDATE y 
+  DELETE) y trabajar con procedimientos almacenados.
+- Implementaciones múltiples: Dado que JDBC es principalmente una colección de definiciones de interfaces, permite que 
+  múltiples implementaciones de estas interfaces - - coexistan y sean utilizadas por la misma aplicación en tiempo de ejecución.
+
+### Libreria
+
+Despues de buscar en la libreria los drives jdbclite3 descargamos el archivo y arrastramos a la libreria de nuestro proyecto
+
+<p align="center">
+<img src="image-50.png" width="300px" />
+</p>
+
+Puede suceder que al abrir el proyecto en otra maquina pierda la referencia de donde esta el jdbc asi que hacemos click derecho y
+ponemos ubicacion del archivo y luego arrastramos hasta donde esta la parte de javaproyect en ReferenceLibraries
+
+<p align="center">
+<img src="image-51.png" width="300px" />
+</p>
+
+### DTO
+
+Un DTO (Data Transfer Object) es un objeto utilizado para encapsular datos y enviarlos de un subsistema de una aplicación 
+a otro. Aquí tienes algunos puntos clave sobre los DTOs:
+
+- Propósito: Los DTOs se utilizan principalmente en la capa de Servicios de una aplicación N-Tier para transferir 
+  datos entre sí y la capa de Interfaz de Usuario (UI).
+
+- Beneficios:
+    + Reducen la cantidad de datos que deben enviarse a través de la red en aplicaciones distribuidas.
+    + Son útiles como modelos en el patrón MVC (Modelo-Vista-Controlador).
+    + También pueden encapsular parámetros para llamadas a métodos.
+
+- Assemblers: Al usar el patrón DTO, se suelen emplear ensambladores de DTOs. Estos convierten objetos del dominio en DTOs y viceversa.
+
+### Proyecto
+
+Como podemos ver en la imagen los demas van hacer package que vamos a crear en src:
+<p align="center">
+<img src="image-53.png" width="300px" />
+<img src="image-52.png" width="300px" />
+</p>
+
+Esto es lo que vamos a copiar en la clase abstract SQLiteDataHelper
+
+<p align="center">
+<img src="image-54.png" width="300px" />
+</p>
+
+En la clase interface hay que copiar este codigo
+<p align="center">
+<img src="image-55.png" width="300px" />
+</p>
+
+1. En el codigo podemos ver al lado de la case este simbolo <T> este se le llama generic y nos ayuda
+   a que cuando en usemos los metodos en otras clase puedas ir cambiando ese nombre en los metodos y no tengas
+   que perder tu tiempo cambiando en cada una de las clase persona, sexo, etc. En la siguiente imagen puedes ver 
+   donde dice object y cambias el nombre que tu quieras y listo te ahorras tiempo.
+
+<p align="center">
+<img src="image-56.png" width="300px" />
+</p>
+
+2. throws Exception; nos va ayudar por si ocurre un error 
+
+En las clases DTO tenemos que poner los datos de las tablas que creamos de la base de datos
+
+3. En nuestro package DTO creamos nuestra clase SexoDTO.java y copiamos los siguiente 
+
+<p align="center">
+<img src="image-57.png" width="300px" />
+</p>
+
+- Todo lo que encontramos es lo que esta en nuestra tabla Sexo de nuestra base de datos
+
+4. Tambien vamos a escribir nuestra interface IDAO que va hacer el que tenga nuestros metodos que van a repartirse en las 
+clases que vayamos creando que se van a conectar a nuestra base de datos
+
+<p align="center">
+<img src="image-58.png" width="300px" />
+</p>
+ 
+5. Por ultimo nuestra clase sexo:
 
 
+<p align="center">
+<img src="image-59.png" width="300px" />
+</p>
+
+## Clase nro 12
+
+### DAC + DataBase
+
+En esta clase empezamos por crear un catalogo en nuetro MER 
+
+<p align="center">
+<img src="image-69.png" width="300px" />
+</p>
+
+y asi se veria en nuestro DDL, tambien modificamos la clase persona:
+
+<p align="center">
+<img src="image-60.png" width="300px" /> <img src="image-61.png" width="300px" /> 
+</p>
+
+Esta es la informacion que vamos a meter en nuestras tablas:
+
+<p align="center">
+<img src="image-62.png" width="300px" />
+</p>
+
+- A continuacion vamos a crear otra clase llamada SexoDAO y la que ya estaba con ese nombre la vamos a cambiar por 
+  SexoAntDAO:
+- Como vimos en esta clase lo de catalogo estas clases nueva de Sexo van a tener diferentes propiedades que la anterior
+  clase sexo y lo que intentamos ver aqui es que el codigo que usamos en la anterior va a ser identico solo que con unos 
+  cambios en la clase SexoDAO y en la clase SexoAntDAO.A continuacion van a ver el codigo final de las nuevas clases:
+
+1. Clase SexoDTO 
+
+<p align="center">
+<img src="image-63.png" width="300px" />
+</p>
+
+2. Clase SexoDAO
+
+<p align="center">
+<img src="image-64.png" width="300px" />
+<img src="image-65.png" width="300px" />
+<img src="image-66.png" width="300px" />
+<img src="image-67.png" width="300px" />
+</p>
+
+3. Mandamos a imprimir para ver si nuestro proyecto esta conectada a la libreria jdbc 
+
+<p align="center">
+<img src="image-71.png" width="300px" /><img src="image-72.png" width="100px" />
+</p>
+- Una conclusion es que todas las clases que creemos en el package de DataAcces es repetitiva, lo unico que cambia cosas minimas del 
+  codigo y despues lo que vamos hacer es lo mismo para las demas clases.
+
+## Clase nro 13
+
+### BL
+
+Ahora que ya acabamos con el DAC, continuamos con la siguiente etapa que es BL
+
+<p align="center">
+<img src="image-70.png" width="300px" />
+</p>
+
+Y en nuestro package BusinessLogic vamos  a crear otro package llamado Entities y ahi vamos a crear nuestra clase SexoBL. Vamos a copiar el
+siguiente codigo en esa clase:
+
+<p align="center">
+<img src="image-73.png" width="300px" />
+</p>
+
+Despues vamos a testear que todo este correcto y que no haya errores
+
+<p align="center">
+<img src="image-74.png" width="300px" /> <img src="image-75.png" width="100px" />
+</p>
+
+## Clase nro 14
+
+### GUI
 
 
